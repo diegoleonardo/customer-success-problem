@@ -1,0 +1,12 @@
+defmodule GerenciaAtendimentoCs do 
+  
+  def selecionar_clientes_para_atendimento(cs, clientes) when is_list(clientes) do
+    Enum.filter(clientes, fn x -> x.nivel <= cs.nivel_atendimento end)
+  end
+
+  def ordena_clientes_para_atendimento(lista_cs, lista_clientes) when is_list(lista_cs) and is_list(lista_clientes) do
+    lista_cs_ordenada = Enum.sort(lista_cs, &(&1.nivel_atendimento <= &2.nivel_atendimento)) 
+    Enum.map(lista_cs_ordenada, fn x -> selecionar_clientes_para_atendimento(x, lista_clientes) end)
+  end
+
+end
