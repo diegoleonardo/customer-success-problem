@@ -77,13 +77,11 @@ defmodule CostumerSuccessProblemTest do
       
       lista_clientes = GerenciaAtendimentoCs.ordena_clientes_para_atendimento(lista_cs_somente_com_nivel_atendimento_100, lista_clientes_cs)
       
-      expected_result = [
-                         [%CostumerSuccessClient{id: 1, nivel: 10}, %CostumerSuccessClient{id: 2, nivel: 20},  
+      expected_result = [[%CostumerSuccessClient{id: 1, nivel: 10}, %CostumerSuccessClient{id: 2, nivel: 20},  
                           %CostumerSuccessClient{id: 3, nivel: 30}, %CostumerSuccessClient{id: 4, nivel: 40},
                           %CostumerSuccessClient{id: 5, nivel: 50}, %CostumerSuccessClient{id: 7, nivel: 60}, 
                           %CostumerSuccessClient{id: 6, nivel: 70}, %CostumerSuccessClient{id: 9, nivel: 80}, 
-                          %CostumerSuccessClient{id: 8, nivel: 90}, %CostumerSuccessClient{id: 10, nivel: 100}]
-                      ]
+                          %CostumerSuccessClient{id: 8, nivel: 90}, %CostumerSuccessClient{id: 10, nivel: 100}]]
       
       assert expected_result == lista_clientes
   end
