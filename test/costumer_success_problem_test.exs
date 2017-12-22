@@ -17,17 +17,17 @@ defmodule CostumerSuccessProblemTest do
     assert Enum.count(lista_clientes_cs) == 10
   end
   
-  test "Costumer success deve atender apenas clientes menor ou igual ao seu nivel", %{lista_clientes_cs: lista_clientes_cs}  do
+  test "Deve atender apenas clientes menor ou igual ao seu nivel", %{lista_clientes_cs: lista_clientes_cs}  do
     cs_nivel_20 = %CostumerSuccess{id: 1, descricao: "CS 1", nivel_atendimento: 20}
     
     clientes_atendidos = GerenciaAtendimentoCs.selecionar_clientes_para_atendimento(cs_nivel_20, lista_clientes_cs)
     assert Enum.count(clientes_atendidos) == 2
   end     
 
-  test "Costumer success não deve estar apto a atender alguém da lista de clientes", %{lista_clientes_cs: lista_clientes_cs} do
-    cs_nivel_20 = %CostumerSuccess{id: 1, descricao: "CS 1", nivel_atendimento: 0}
+  test "Deve retornar lista vazia quando não estiver apto a atender alguém da lista de clientes", %{lista_clientes_cs: lista_clientes_cs} do
+    cs_nivel_sem_nivel = %CostumerSuccess{id: 1, descricao: "CS 1", nivel_atendimento: 0}
 
-    clientes_atendidos = GerenciaAtendimentoCs.selecionar_clientes_para_atendimento(cs_nivel_20, lista_clientes_cs)
+    clientes_atendidos = GerenciaAtendimentoCs.selecionar_clientes_para_atendimento(cs_nivel_sem_nivel, lista_clientes_cs)
     assert Enum.empty?(clientes_atendidos)  
   end
 
@@ -40,6 +40,7 @@ defmodule CostumerSuccessProblemTest do
                         [%CostumerSuccessClient{id: 6, nivel: 70}, %CostumerSuccessClient{id: 9, nivel: 80}], 
                         [%CostumerSuccessClient{id: 8, nivel: 90}, %CostumerSuccessClient{id: 10, nivel: 100}]
                       ]
+    
     assert lista_ordenada == expected_result
   end
 

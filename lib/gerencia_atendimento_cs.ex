@@ -17,7 +17,7 @@ defmodule GerenciaAtendimentoCs do
                           cond do
                             cs_que_atende_menor_nivel.nivel_atendimento == x.nivel_atendimento -> 
                                 selecionar_clientes_para_atendimento(x, lista_clientes)
-
+                              
                             true -> 
                                 customer_success_anterior = Enum.filter(lista_cs, fn z -> z.nivel_atendimento < x.nivel_atendimento end) 
                                                               |> List.last()
